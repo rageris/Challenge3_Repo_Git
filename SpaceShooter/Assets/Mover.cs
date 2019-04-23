@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Mover : MonoBehaviour
 {
@@ -10,6 +9,7 @@ public class Mover : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
         rb.velocity = transform.forward * speed;
     }
 }

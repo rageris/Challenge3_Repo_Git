@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 [System.Serializable]
 public class Boundary
@@ -11,19 +10,20 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float tilt;
-    private float nextFire;
     public float fireRate;
+
     public GameObject shot;
     public Transform shotSpawn;
     public Boundary boundary;
+
+    private float nextFire;
     private AudioSource clip;
-
-
     private Rigidbody rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
         clip = GetComponent<AudioSource>();
     }
 
@@ -32,7 +32,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
+
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+
             clip.Play();
         }
     }
@@ -40,15 +42,19 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
+
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+
         rb.velocity = movement * speed;
 
         rb.position = new Vector3
         (
              Mathf.Clamp(rb.position.x, boundary.xMin, boundary.xMax),
+             
              0.0f,
+             
              Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax)
         );
 

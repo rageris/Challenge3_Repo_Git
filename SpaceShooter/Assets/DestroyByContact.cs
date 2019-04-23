@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DestroyByContact : MonoBehaviour {
 
+    public int scoreValue;
     public GameObject explosion;
     public GameObject playerExplosion;
-    public int scoreValue;
+
     private GameController gameController;
 
     void Start()
@@ -22,6 +21,7 @@ public class DestroyByContact : MonoBehaviour {
             Debug.Log("Cannot find controller");
         }
     }
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -40,8 +40,11 @@ public class DestroyByContact : MonoBehaviour {
             Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
             gameController.GameOver();
         }
+
         gameController.AddScore(scoreValue);
+
         Destroy(other.gameObject);
+
         Destroy(gameObject);
     }
 	

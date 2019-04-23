@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WeaponController : MonoBehaviour {
 
@@ -11,21 +9,18 @@ public class WeaponController : MonoBehaviour {
 
     private AudioSource clip;
 
-	// Use this for initialization
-	void Start () {
+
+	void Start ()
+    {
         clip = GetComponent<AudioSource>();
+
         InvokeRepeating("Fire", delay, fireRate);
 	}
 	
     void Fire()
     {
         Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-        clip.Play();
-    }
 
-	// Update is called once per frame
-	void Update ()
-    {
-        
+        clip.Play();
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RandomRotator : MonoBehaviour
 {
@@ -12,6 +10,7 @@ public class RandomRotator : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
         rb.angularVelocity = Random.insideUnitSphere * tumble;
     }
 }
