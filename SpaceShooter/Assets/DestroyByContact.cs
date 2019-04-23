@@ -5,7 +5,7 @@ public class DestroyByContact : MonoBehaviour {
     public int scoreValue;
     public GameObject explosion;
     public GameObject playerExplosion;
-
+    public GameObject pickUp;
     private GameController gameController;
 
     void Start()
@@ -20,6 +20,8 @@ public class DestroyByContact : MonoBehaviour {
         {
             Debug.Log("Cannot find controller");
         }
+
+        pickUp = GameObject.FindWithTag("PickUp");
     }
 
 
@@ -33,6 +35,11 @@ public class DestroyByContact : MonoBehaviour {
         if (explosion != null)
         {
             Instantiate(explosion, transform.position, transform.rotation);
+        }
+
+        if (this.tag == "Hazard")
+        {
+            Instantiate(pickUp, transform.position, Quaternion.Euler(90f, 0, 0));
         }
 
         if (other.tag == "Player")

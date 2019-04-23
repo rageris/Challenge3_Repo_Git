@@ -10,16 +10,29 @@ public class PickUp : MonoBehaviour {
     private bool isBoosted;
     private PlayerController playerController;
     private Color tmp;
+    private Color reset;
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+
         playerController = player.GetComponent<PlayerController>();
 
         tmp = GetComponent<SpriteRenderer>().color;
 
+        reset = GetComponent<SpriteRenderer>().color;
+
+        reset.a = 255f;
+
         isBoosted = false;
 
         timer = 10f;
+
+        GetComponent<SpriteRenderer>().color = reset;
+
+        GetComponent<SphereCollider>().enabled = true;
+
+        
     }
 
     void OnTriggerEnter(Collider other)

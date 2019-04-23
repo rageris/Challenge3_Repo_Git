@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
     
     void Start()
     {
-        hardModeText.text = "";
+        hardModeText.text = "Press 'B' to start Hard Mode";
 
         hardModeEnabled = false;
 
@@ -118,7 +118,6 @@ public class GameController : MonoBehaviour
             mover.speed = -4.5f;
             mover1.speed = -4.5f;
             mover2.speed = -4.5f;
-            Debug.Log("Hard Mode Activated");
 
             if(hardModeEnabled == true)
             {
