@@ -9,6 +9,9 @@ public class GameController : MonoBehaviour
     public GameObject starFieldClose;
     public GameObject starFieldDistant;
     public GameObject background;
+    public GameObject asteroid1;
+    public GameObject asteroid2;
+    public GameObject asteroid3;
 
     public Vector3 spawnValues;
     public int hazardCount;
@@ -20,13 +23,18 @@ public class GameController : MonoBehaviour
     public Text scoreText;
     public Text restartText;
     public Text gameOverText;
+    public Text hardModeText;
 
     private bool gameOver;
     private bool restart;
     private bool playerWon;
+    private bool hardModeEnabled;
 
     private int score;
     private BGScroller bgScroller;
+    private Mover mover;
+    private Mover mover1;
+    private Mover mover2;
     private ParticleSystem psClose;
     private ParticleSystem psFar;
 
@@ -36,6 +44,16 @@ public class GameController : MonoBehaviour
     
     void Start()
     {
+        hardModeText.text = "";
+
+        hardModeEnabled = false;
+
+        mover = asteroid1.GetComponent<Mover>();
+
+        mover1 = asteroid2.GetComponent<Mover>();
+
+        mover2 = asteroid3.GetComponent<Mover>();
+
         bgScroller = background.GetComponent<BGScroller>();
 
         psClose = starFieldClose.GetComponent<ParticleSystem>();
@@ -53,6 +71,12 @@ public class GameController : MonoBehaviour
         gameOverText.text = "";
 
         score = 0;
+
+        mover.speed = -2.5f;
+
+        mover1.speed = -2.5f;
+
+        mover2.speed = -2.5f;
 
         UpdateScore();
 
@@ -85,6 +109,21 @@ public class GameController : MonoBehaviour
             far.simulationSpeed = 100f;
 
             mainMusic.Stop();
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            hardModeEnabled = true;
+
+            mover.speed = -4.5f;
+            mover1.speed = -4.5f;
+            mover2.speed = -4.5f;
+            Debug.Log("Hard Mode Activated");
+
+            if(hardModeEnabled == true)
+            {
+                hardModeText.text = "Hard Mode Enabled";
+            }
         }
 
     }
